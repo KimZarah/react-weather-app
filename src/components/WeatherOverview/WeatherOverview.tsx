@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from 'react'
 import { WeatherItem } from './component/WeatherItem'
+import { CurrentItem } from './component/CurrentItem'
 import { Weather, WeatherLocation } from '../../lib/types'
 import { getWeather, getForecast } from '../../lib/fetchWeather'
 
@@ -10,7 +11,7 @@ interface Props {
 export const WeatherOverview: FC<Props> = ({ location }) => {
     const [weather, setWeather] = useState<Weather | null>(null)
     const [forecast, setForecast] = useState<Weather[] | null>(null)
-    console.log('location in weatheroverview', location)
+
     useEffect(() => {
         ;(async function () {
             if (location) {
@@ -27,21 +28,32 @@ export const WeatherOverview: FC<Props> = ({ location }) => {
     if (!location || !weather || !forecast) return null
 
     return (
-        <div>
-            <h2>{location.name}</h2>
-            <h1>Current Weather</h1>
-            <WeatherItem weather={weather} />
-            <h2>Forecast</h2>
-            <div>
-                <ul style={{ whiteSpace: 'nowrap' }}>
-                    {forecast.map((item) => (
-                        <li key={item.dt}>
-                            <WeatherItem weather={item} />
-                        </li>
-                    ))}
-                </ul>
+        <>
+            <div className="w-full px-1">
+                <h2>{location.name}</h2>
+                <h3>Current Weather</h3>
+                <div className="p-1 my-2 bg-white flex flex-row shadow-lg rounded-lg overflow-hidden">
+                    <CurrentItem weather={weather} />
+                </div>
+                <h3>Forecast</h3>
+                <div>
+                    <ul className="lg:flex lg:flex-wrap justify-between">
+                        {forecast.map((item, index) => {
+                            return (
+                                index <= 5 && (
+                                    <li
+                                        className="p-1 my-2 bg-white flex lg:w-[calc(33%-1rem)] flex-col shadow-lg rounded-lg overflow-hidden"
+                                        key={item.dt}
+                                    >
+                                        <WeatherItem weather={item} />
+                                    </li>
+                                )
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

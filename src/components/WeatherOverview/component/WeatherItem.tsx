@@ -1,35 +1,41 @@
 import React, { FC } from 'react'
 import { Weather } from '../../../lib/types'
-import { getIconUrl } from '../../../lib/fetchWeather'
 import { getDate } from '../../../utils/getDate'
+import WeatherIcon from './WeatherIcon'
 
-interface Props {
+type Props = {
     weather: Weather
 }
 
-export const WeatherItem: FC<Props> = ({ weather }) => (
-    <div>
-        <div>
-            {getDate(weather.dt).toLocaleTimeString('en-US', {
-                weekday: 'long',
-                month: 'long',
-                day: 'numeric',
-            })}
-        </div>
-        <div>
-            <strong>{weather.main.temp}°C</strong>
-            <div>
-                ({weather.main.temp_min}°C / {weather.main.temp_max}°C)
+export const WeatherItem: FC<Props> = ({ weather }) => {
+    return (
+        <div className="container p-1">
+            <h4>
+                {getDate(weather.dt).toLocaleTimeString('en-US', {
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                })}
+            </h4>
+            <div className={''}>
+                {weather.weather.map((condition, index) => (
+                    <div>
+                        <WeatherIcon
+                            key={index + '-' + condition.id}
+                            code={condition.id}
+                        />
+                        <span> {condition.main}</span>
+                    </div>
+                ))}
+                <div className="flex flex-col">
+                    <strong>
+                        {Math.round(weather.main.temp_min)}°C /
+                        {Math.round(weather.main.temp_max)}°C
+                    </strong>
+                </div>
             </div>
         </div>
-        <div>Humidity: {weather.main.humidity}%</div>
-        {weather.weather.map((condition) => (
-            <div key={condition.id}>
-                <img src={getIconUrl(condition.icon)} alt={condition.main} />{' '}
-                {condition.main} {condition.description}
-            </div>
-        ))}
-    </div>
-)
+    )
+}
 
 export default WeatherItem

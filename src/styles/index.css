@@ -23,43 +23,43 @@
   font-weight: 700;
 }
 
-.h1,
+
 h1 {
-  @apply text-dark-grey font-ss-pro-bold text-h1 font-bold mb-4 sm:mb-6;
+  @apply text-white font-ss-pro-bold text-h1 font-bold my-4 sm:mb-6;
 }
 
-.h1-white {
-  @apply text-white font-ss-pro-bold text-h1 font-bold mb-4 sm:mb-6;
-}
-
-.h2,
 h2 {
-  @apply text-dark-grey font-ss-pro-bold text-h2 font-bold mb-4 sm:mb-6;
+  @apply text-lightgrey font-ss-pro-bold text-h2 font-bold my-4 sm:mb-6;
 }
 
-.h3 {
-  @apply text-dark-grey font-ss-pro-semibold text-h3 font-semibold mb-4 sm:mb-6;
+h3 {
+  @apply text-lightgrey font-ss-pro-semibold text-h3 font-semibold my-4 sm:mb-6;
 }
 
-.h4 {
-  @apply text-red font-ss-pro-bold text-h4 font-normal mb-4 sm:mb-6;
+h4 {
+  @apply text-darkgrey font-ss-pro-bold text-h4 font-normal mb-4 sm:mb-6;
 }
 
 p {
-  @apply text-dark-grey font-ss-pro-regular text-body font-normal mb-8;
+  @apply text-darkgrey font-ss-pro-regular text-body font-normal;
 }
 
 strong {
-  @apply text-dark-grey font-ss-pro-bold text-body font-bold mb-8;
+  @apply text-darkgrey font-ss-pro-bold text-body font-bold;
 }
 
 
 body {
-  @apply text-dark-grey font-ss-pro-regular text-body font-normal;
-  padding: 0;
-  margin: 0;
+  @apply text-darkgrey font-ss-pro-regular text-body font-normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(#e66465, #9198e5);
 }
 
-.label {
-  @apply text-white font-ss-pro-regular text-label font-normal pb-2 pt-8 block;
+body *{
+  box-sizing: border-box;
+  border: 0 solid;
 }
+
