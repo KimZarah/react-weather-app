@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'ss-pro-regular';
+  src: url('../static/fonts/source-sans-pro/SourceSansPro-Regular.woff');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'ss-pro-semibold';
+  src: url('../static/fonts/source-sans-pro/SourceSansPro-SemiBold.woff');
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'ss-pro-bold';
+  src: url('../static/fonts/source-sans-pro/SourceSansPro-Bold.woff');
+  font-style: normal;
+  font-weight: 700;
+}
+
+.h1,
+h1 {
+  @apply text-dark-grey font-ss-pro-bold text-h1 font-bold mb-4 sm:mb-6;
+}
+
+.h1-white {
+  @apply text-white font-ss-pro-bold text-h1 font-bold mb-4 sm:mb-6;
+}
+
+.h2,
+h2 {
+  @apply text-dark-grey font-ss-pro-bold text-h2 font-bold mb-4 sm:mb-6;
+}
+
+.h3 {
+  @apply text-dark-grey font-ss-pro-semibold text-h3 font-semibold mb-4 sm:mb-6;
+}
+
+.h4 {
+  @apply text-red font-ss-pro-bold text-h4 font-normal mb-4 sm:mb-6;
+}
+
+p {
+  @apply text-dark-grey font-ss-pro-regular text-body font-normal mb-8;
+}
+
+strong {
+  @apply text-dark-grey font-ss-pro-bold text-body font-bold mb-8;
+}
+
+
+body {
+  @apply text-dark-grey font-ss-pro-regular text-body font-normal;
+  padding: 0;
+  margin: 0;
+}
+
+.label {
+  @apply text-white font-ss-pro-regular text-label font-normal pb-2 pt-8 block;
+}
