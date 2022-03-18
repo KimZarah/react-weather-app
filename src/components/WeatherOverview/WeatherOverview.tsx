@@ -14,7 +14,6 @@ export const WeatherOverview: FC<Props> = ({ location }) => {
 
     useEffect(() => {
         ;(async function () {
-            console.log(location, 'location')
             if (location) {
                 const [weather, forecast] = await Promise.all([
                     getWeather(location.name),

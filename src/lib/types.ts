@@ -3,7 +3,7 @@ export type Coordinates = {
     lng: number
 }
 export type WeatherLocation = {
-    coord: Coordinates
+    coord?: Coordinates
     id: number
     name: string
 }
@@ -30,4 +30,5 @@ export type Weather = {
     dt: number
     id: number
     name: string
+    cod?: string
 }

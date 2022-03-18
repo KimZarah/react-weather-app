@@ -21,8 +21,6 @@ export async function getWeather(
         return undefined
     }
 
-    // throw new Error('Failed to read location data')
-
     return await current.json()
 }
 
@@ -43,8 +41,6 @@ export async function getForecast(
         console.error('Failed to read location data')
         return undefined
     }
-
-    // if (foreCast.status !== 200) throw new Error('Failed to read location data')
 
     return (await foreCast.json()).list
 }

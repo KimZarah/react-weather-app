@@ -39,6 +39,7 @@ module.exports = {
         extend: {
             animation: {
                 zoomInOut: 'zoomInOut 2s ease infinite',
+                loading: 'loading 1s ease-in-out infinite;',
             },
             keyframes: {
                 zoomInOut: {
@@ -50,6 +51,11 @@ module.exports = {
                     },
                     '100%': {
                         transform: 'scale(1, 1)',
+                    },
+                },
+                loading: {
+                    to: {
+                        transform: 'rotate(360deg)',
                     },
                 },
             },

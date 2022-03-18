@@ -7,7 +7,6 @@ type Props = {
 }
 
 export const CurrentItem: FC<Props> = ({ weather }) => {
-    // console.log(weather, 'weather in currentitem')
     return (
         <div className="container flex p-1 justify-around flex-col lg:flex-row">
             <div className={'flex flex-col items-center p-2'}>
