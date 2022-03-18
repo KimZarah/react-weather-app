@@ -11,7 +11,7 @@ export const CurrentItem: FC<Props> = ({ weather }) => {
     return (
         <div className="container flex p-1 justify-around flex-col lg:flex-row">
             <div className={'flex flex-col items-center p-2'}>
-                <WeatherIcon current={true} code={weather.weather[0].id} />
+                <WeatherIcon current code={weather.weather[0].id} />
                 <strong className="text-[4rem] leading-tight text-darkgrey ">
                     {Math.round(weather.main.temp)}°C
                 </strong>

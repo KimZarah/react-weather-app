@@ -20,11 +20,8 @@ export const WeatherItem: FC<Props> = ({ weather }) => {
             <div>
                 <div className={''}>
                     {weather.weather.map((condition, index) => (
-                        <div>
-                            <WeatherIcon
-                                key={index + '-' + condition.id}
-                                code={condition.id}
-                            />
+                        <div key={index + '-' + condition.id}>
+                            <WeatherIcon code={condition.id} />
                             <span> {condition.main}</span>
                         </div>
                     ))}

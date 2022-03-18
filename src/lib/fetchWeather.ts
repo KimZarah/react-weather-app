@@ -2,7 +2,7 @@ import { WeatherLocation } from './types'
 import { Weather } from './types'
 
 const key = process.env.REACT_APP_API_KEY
-const baseUrl = 'https://api.openweathermap.org/data/2.5'
+const baseUrl = process.env.REACT_APP_API_URL
 
 export async function searchLocation(
     term: string
@@ -17,9 +17,15 @@ export async function searchLocation(
 export async function getWeather(
     locationId: number | { lat: number; lng: number }
 ): Promise<Weather> {
-    const current = await fetch(
-        `${baseUrl}/weather?id=${locationId}&appid=${key}&units=metric`
-    )
+    let current
+
+    typeof locationId === 'object'
+        ? (current = await fetch(
+              `${baseUrl}/weather/?lat=${locationId.lat}&lon=${locationId.lng}&appid=${key}&units=metric`
+          ))
+        : (current = await fetch(
+              `${baseUrl}/weather?id=${locationId}&appid=${key}&units=metric`
+          ))
 
     if (current.status !== 200) throw new Error('Failed to read location data')
 
@@ -29,13 +35,17 @@ export async function getWeather(
 export async function getForecast(
     locationId: number | { lat: number; lng: number }
 ): Promise<Weather[]> {
-    console.log(typeof locationId, 'location id in get forecast')
+    let foreCast
 
-    const forecast = await fetch(
-        `${baseUrl}/forecast/?id=${locationId}&appid=${key}&units=metric&cnt=8`
-    )
+    typeof locationId === 'object'
+        ? (foreCast = await fetch(
+              `${baseUrl}/forecast/?lat=${locationId.lat}&lon=${locationId.lng}&appid=${key}&units=metric&cnt=8`
+          ))
+        : (foreCast = await fetch(
+              `${baseUrl}/forecast/?id=${locationId}&appid=${key}&units=metric&cnt=8`
+          ))
 
-    if (forecast.status !== 200) throw new Error('Failed to read location data')
+    if (foreCast.status !== 200) throw new Error('Failed to read location data')
 
-    return (await forecast.json()).list
+    return (await foreCast.json()).list
 }

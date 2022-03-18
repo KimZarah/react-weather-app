@@ -1,6 +1,6 @@
 export type Coordinates = {
-    lon: number
     lat: number
+    lng: number
 }
 export type WeatherLocation = {
     coord: Coordinates
@@ -28,4 +28,6 @@ export type Weather = {
     weather: WeatherConditions[]
     main: MainWeatherData
     dt: number
+    id: number
+    name: string
 }

@@ -4,16 +4,40 @@ import Search from '../components/Search/Search'
 import WeatherOverview from '../components/WeatherOverview/WeatherOverview'
 import { searchLocation } from '../lib/fetchWeather'
 import { WeatherLocation } from '../lib/types'
+import { getWeather } from '../lib/fetchWeather'
 
 const Home = () => {
     const [location, setLocation] = useState<WeatherLocation>()
     const [searchQuery, setSearchQuery] = useState<string>('')
     const [showError, setShowError] = useState<boolean>(false)
 
+    const checkLocation = () => {
+        console.log('checklocation')
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(async function (position) {
+                if (position) {
+                    const location = await getWeather({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    })
+                    setLocation({
+                        id: location.id,
+                        name: location.name,
+                        coord: {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                        },
+                    })
+                }
+            })
+        } else {
+            alert('Geolocation is not supported by this browser.')
+        }
+    }
+
     useEffect(() => {
         if (!searchQuery) return
         searchLocation(searchQuery).then((data: any) => {
-            console.log('data', data)
             setLocation(data)
             if (data === undefined) {
                 setShowError(true)
@@ -24,8 +48,11 @@ const Home = () => {
     return (
         <div className="container xl:w-1/2 md:p-2 px-1 m-auto">
             <div className="w-full  m-auto flex relative flex-col items-center">
-                <h1>Weather App</h1>
-                <Search onChange={setSearchQuery} />
+                <h1>React Weather App</h1>
+                <Search
+                    onSearchChange={setSearchQuery}
+                    onRequestLocation={checkLocation}
+                />
                 {location ? (
                     <WeatherOverview location={location} />
                 ) : showError ? (
