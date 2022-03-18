@@ -1,4 +1,4 @@
-export const fetchCities = async (search: string) => {
+export const fetchPlaces = async (search: string) => {
     const url = `https://places-dsn.algolia.net/1/places/query`
     const res = await (
         await fetch(url, {

@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState, useRef } from 'react'
 import SearchIcon from '../Icons/SearchIcon'
 import LocationIcon from '../Icons/LocationIcon'
-import { fetchCities } from '../../lib/fetchSuggestions'
+import { fetchPlaces } from '../../lib/fetchSuggestions'
 
 import { useClickedOutsideElement } from './../../hooks/useClickedOutsideElement'
 
@@ -25,7 +25,7 @@ export const Search: FC<Props> = ({ onSearchChange, onRequestLocation }) => {
 
     useEffect(() => {
         if (location) {
-            fetchCities(location).then((res) => {
+            fetchPlaces(location).then((res) => {
                 setSuggestions(res)
                 setShowSuggestions(true)
             })
