@@ -14,7 +14,7 @@ type Props = {
 }
 
 export const WeatherIcon = ({ code, current }: Props) => {
-    const currentClass = 'lg:w-48 lg:h-48 animate-zoomInOut'
+    const currentClass = 'w-24 h-24 lg:w-48 lg:h-48 animate-zoomInOut'
     const forecastClass = 'animate-zoomInOut'
     switch (code) {
         case 800:

@@ -24,15 +24,8 @@ export type MainWeatherData = {
     humidity: number
 }
 
-export type WeatherSysData = {
-    country: string
-    sunrise: number
-    sunset: number
-}
-
 export type Weather = {
     weather: WeatherConditions[]
     main: MainWeatherData
-    sys: WeatherSysData
     dt: number
 }

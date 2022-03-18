@@ -13,6 +13,7 @@ module.exports = {
             darkgrey: '#333333',
             black: '#000000',
             petrolblue: '#2596be',
+            orangepink: '#e66465',
         },
         fontFamily: {
             'ss-pro-regular': ['ss-pro-regular', 'sans-serif'],

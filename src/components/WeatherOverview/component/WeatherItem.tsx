@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Weather } from '../../../lib/types'
 import { getDate } from '../../../utils/getDate'
 import WeatherIcon from './WeatherIcon'
@@ -17,21 +17,23 @@ export const WeatherItem: FC<Props> = ({ weather }) => {
                     day: 'numeric',
                 })}
             </h4>
-            <div className={''}>
-                {weather.weather.map((condition, index) => (
-                    <div>
-                        <WeatherIcon
-                            key={index + '-' + condition.id}
-                            code={condition.id}
-                        />
-                        <span> {condition.main}</span>
+            <div>
+                <div className={''}>
+                    {weather.weather.map((condition, index) => (
+                        <div>
+                            <WeatherIcon
+                                key={index + '-' + condition.id}
+                                code={condition.id}
+                            />
+                            <span> {condition.main}</span>
+                        </div>
+                    ))}
+                    <div className="flex flex-col">
+                        <strong>
+                            {Math.round(weather.main.temp_min)}°C /
+                            {Math.round(weather.main.temp_max)}°C
+                        </strong>
                     </div>
-                ))}
-                <div className="flex flex-col">
-                    <strong>
-                        {Math.round(weather.main.temp_min)}°C /
-                        {Math.round(weather.main.temp_max)}°C
-                    </strong>
                 </div>
             </div>
         </div>

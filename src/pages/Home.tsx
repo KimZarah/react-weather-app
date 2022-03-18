@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import '../styles/index.css'
 import Search from '../components/Search/Search'
 import WeatherOverview from '../components/WeatherOverview/WeatherOverview'
