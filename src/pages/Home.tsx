@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import '../styles/index.css'
 import Search from '../components/Search/Search'
 import WeatherOverview from '../components/WeatherOverview/WeatherOverview'
-import { searchLocation } from '../lib/fetchWeather'
 import { WeatherLocation } from '../lib/types'
 import { getWeather } from '../lib/fetchWeather'
 
@@ -20,14 +19,18 @@ const Home = () => {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     })
-                    setLocation({
-                        id: location.id,
-                        name: location.name,
-                        coord: {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude,
-                        },
-                    })
+                    setLocation(
+                        location
+                            ? {
+                                  id: location.id,
+                                  name: location.name,
+                                  coord: {
+                                      lat: position.coords.latitude,
+                                      lng: position.coords.longitude,
+                                  },
+                              }
+                            : undefined
+                    )
                 }
             })
         } else {
@@ -37,9 +40,11 @@ const Home = () => {
 
     useEffect(() => {
         if (!searchQuery) return
-        searchLocation(searchQuery).then((data: any) => {
+        // getweather with string tryout
+        getWeather(searchQuery).then((data: any) => {
             setLocation(data)
-            if (data === undefined) {
+            console.log(data, 'data')
+            if (data === undefined || data.cod === '404') {
                 setShowError(true)
             }
         })

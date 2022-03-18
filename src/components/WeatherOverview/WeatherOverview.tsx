@@ -9,15 +9,16 @@ interface Props {
 }
 
 export const WeatherOverview: FC<Props> = ({ location }) => {
-    const [weather, setWeather] = useState<Weather | null>(null)
-    const [forecast, setForecast] = useState<Weather[] | null>(null)
+    const [weather, setWeather] = useState<Weather | undefined>(undefined)
+    const [forecast, setForecast] = useState<Weather[] | undefined>(undefined)
 
     useEffect(() => {
         ;(async function () {
+            console.log(location, 'location')
             if (location) {
                 const [weather, forecast] = await Promise.all([
-                    getWeather(location.id),
-                    getForecast(location.id),
+                    getWeather(location.name),
+                    getForecast(location.name),
                 ])
                 setWeather(weather)
                 setForecast(forecast)
