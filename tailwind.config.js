@@ -20,6 +20,7 @@ module.exports = {
             h3: ['22px', '30px'],
             h4: ['18px', '24px'],
             body: ['18px', '28px'],
+            xl: ['64px', '72px'],
         },
         screens: {
             sm: '375px',

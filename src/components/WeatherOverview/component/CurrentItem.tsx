@@ -8,10 +8,10 @@ type Props = {
 
 export const CurrentItem: FC<Props> = ({ weather }) => {
     return (
-        <div className="container flex p-1 justify-around flex-col lg:flex-row">
+        <div className="flex p-1 justify-around flex-col md:flex-row">
             <div className={'flex flex-col items-center p-2'}>
                 <WeatherIcon current code={weather.weather[0].id} />
-                <strong className="text-[4rem] leading-tight text-darkgrey ">
+                <strong className="text-xl text-darkgrey ">
                     {Math.round(weather.main.temp)}°C
                 </strong>
             </div>

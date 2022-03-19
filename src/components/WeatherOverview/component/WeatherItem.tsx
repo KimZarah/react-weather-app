@@ -9,7 +9,7 @@ type Props = {
 
 export const WeatherItem: FC<Props> = ({ weather }) => {
     return (
-        <div className="container p-1">
+        <div className="p-2">
             <h4>
                 {getDate(weather.dt).toLocaleTimeString('en-US', {
                     weekday: 'long',
@@ -18,9 +18,12 @@ export const WeatherItem: FC<Props> = ({ weather }) => {
                 })}
             </h4>
             <div>
-                <div className={''}>
+                <div className={'flex'}>
                     {weather.weather.map((condition, index) => (
-                        <div key={index + '-' + condition.id}>
+                        <div
+                            className="text-center mr-2"
+                            key={index + '-' + condition.id}
+                        >
                             <WeatherIcon code={condition.id} />
                             <span> {condition.main}</span>
                         </div>
